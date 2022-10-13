@@ -4,15 +4,20 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Context } from '..'
-import { SHOP_ROUTE } from '../utils/constants'
+import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/constants'
 
 const NavBar = observer(() => {
   const { user } = useContext(Context)
+  const navigate = useNavigate()
 
   const handleAuth = () => {
     user.setIsAuth(true)
+  }
+  const handleLogout = () => {
+    navigate(LOGIN_ROUTE)
+    user.setIsAuth(false)
   }
 
   return (
@@ -23,8 +28,17 @@ const NavBar = observer(() => {
         </NavLink>
         {user.isAuth ? (
           <Nav className="ms-auto">
-            <Button variant="outline-light">Авторизция</Button>
-            <Button variant="outline-light" className="ms-2">
+            <Button
+              variant="outline-light"
+              onClick={() => navigate(ADMIN_ROUTE)}
+            >
+              Админ панель
+            </Button>
+            <Button
+              variant="outline-light"
+              className="ms-2"
+              onClick={handleLogout}
+            >
               Выйти
             </Button>
           </Nav>

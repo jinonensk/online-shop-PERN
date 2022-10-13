@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite'
 import React, { useContext } from 'react'
 import {
   createBrowserRouter,
@@ -21,7 +22,7 @@ import {
   REGISTRATION_ROUTE,
 } from '../utils/constants'
 
-const AppRouter = () => {
+const AppRouter = observer(() => {
   const { user } = useContext(Context)
 
   return (
@@ -41,6 +42,6 @@ const AppRouter = () => {
       )}
     />
   )
-}
+})
 
 export default AppRouter
