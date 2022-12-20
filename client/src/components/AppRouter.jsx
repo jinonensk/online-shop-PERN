@@ -29,7 +29,7 @@ const AppRouter = observer(() => {
     <RouterProvider
       router={createBrowserRouter(
         createRoutesFromElements(
-          <Route path="/" element={<RootLayout />} errorElement={<Error />}>
+          <Route path='/' element={<RootLayout />} errorElement={<Error />}>
             <Route index element={<Shop />} />
             <Route path={DEVICE_ROUTE + '/:id'} element={<DevicePage />} />
             <Route path={REGISTRATION_ROUTE} element={<Auth />} />
